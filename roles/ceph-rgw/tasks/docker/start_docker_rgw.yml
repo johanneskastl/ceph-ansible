@@ -10,6 +10,9 @@
       INST_PORT={{ item.radosgw_frontend_port }}
   with_items: "{{ rgw_instances }}"
 
+- name: include_task systemd.yml
+  include_tasks: systemd.yml
+
 - name: systemd start rgw container
   systemd:
     name: ceph-radosgw@rgw.{{ ansible_hostname }}.{{ item.instance_name }}
